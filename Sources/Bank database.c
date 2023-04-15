@@ -147,3 +147,61 @@ void print(){
     }
 }
 
+void transfer(){
+    int temp1,temp2,i;
+    float cash;
+    char flag=0;
+    L10:
+    printf("Customer's id(the customer who will transfer money):");
+    fflush(stdin);
+    scanf("%i",&temp1);
+    if(temp1<=0){
+        printf("Invalid value!\n");
+        goto L10;
+    }
+    for(i=0;i<=MAX-1;i++){
+        if(temp1==customer[i].id){
+            temp1=i;
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0){
+        printf("Error!\nThere's no customer with this id.\n");
+        goto L10;
+    }
+    flag=0;
+    L11:
+    printf("Customer's id(the customer who will receive the money):");
+    fflush(stdin);
+    scanf("%i",&temp2);
+    if(temp2<=0){
+        printf("Invalid value!\n");
+        goto L11;
+    }
+    for(i=0;i<=MAX-1;i++){
+        if(temp2==customer[i].id){
+            temp2=i;
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0){
+        printf("Error!\nThere's no customer with this id.\n");
+        goto L11;
+    }
+    else if(temp2==temp1){
+        printf("Error!\nThis is the id of the sender.\n");
+        goto L11;
+    }
+    L12:
+    printf("Cash that will be transfered:");
+    fflush(stdin);
+    scanf("%f",&cash);
+    if(cash<=0){
+        printf("Invalid value!\n");
+        goto L12;
+    }
+    customer[temp1].cash-=cash;
+    customer[temp2].cash+=cash;
+}
