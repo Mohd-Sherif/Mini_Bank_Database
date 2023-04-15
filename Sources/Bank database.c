@@ -88,3 +88,33 @@ void edit(){
         goto L7;
     }
 }
+
+void delete_data(){
+    int temp,i;
+    char flag=0;
+    L8:
+    printf("Customer's id:");
+    fflush(stdin);
+    scanf("%i",&temp);
+    if(temp<=0){
+        printf("Invalid value!\n");
+        goto L8;
+    }
+    for(i=0;i<=MAX-1;i++){
+        if(temp==customer[i].id){
+            temp=i;
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0){
+        printf("Error!\nThere's no customer with this id.\n");
+        goto L8;
+    }
+    else {
+        customer[temp].id=-1;
+        strcpy(customer[temp].name,"-1");
+        customer[temp].cash=-1;
+        strcpy(customer[temp].acc_type,"-1");
+    }
+}
