@@ -44,3 +44,47 @@ void add(){
         goto L4;
     }
 }
+
+void edit(){
+    int temp,i;
+    char flag=0;
+    L5:
+    printf("Customer's id:");
+    fflush(stdin);
+    scanf("%i",&temp);
+    for(i=0;i<=MAX-1;i++){
+        if(temp==customer[i].id){
+            temp=i;
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0){
+        printf("Error!\nThere's no any customer with this id.\n");
+        goto L5;
+    }
+    else {
+        printf("Customer's new id:");
+        fflush(stdin);
+        scanf("%i",&customer[temp].id);
+    }
+    printf("Customer's new name:");
+    fflush(stdin);
+    gets(&customer[temp].name);
+    L6:
+    printf("Customer's new cash value:");
+    fflush(stdin);
+    scanf("%f",&customer[temp].cash);
+    if(customer[temp].cash<=0){
+        printf("Invalid value!\n");
+        goto L6;
+    }
+    L7:
+    printf("Customer's new account type <debit/credit>:");
+    fflush(stdin);
+    scanf("%s",&customer[temp].acc_type);
+    if((strcmp(customer[temp].acc_type,"debit")!=0)&&(strcmp(customer[temp].acc_type,"credit")!=0)){
+        printf("Invalid choice!\n");
+        goto L7;
+    }
+}
