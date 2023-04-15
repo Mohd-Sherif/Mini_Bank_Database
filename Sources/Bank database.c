@@ -118,3 +118,32 @@ void delete_data(){
         strcpy(customer[temp].acc_type,"-1");
     }
 }
+
+void print(){
+    int temp,i;
+    char flag=0;
+    L9:
+    printf("Customer's id:");
+    fflush(stdin);
+    scanf("%i",&temp);
+    if(temp<=0){
+        printf("Invalid value!\n");
+        goto L9;
+    }
+    for(i=0;i<=MAX-1;i++){
+        if(temp==customer[i].id){
+            temp=i;
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0){
+        printf("Error!\nThere's no customer with this id.\n");
+        goto L9;
+    }
+    else {
+        printf("Data of the customer who's id is %i:-\n",customer[temp].id);
+        printf("Name:%s\nCash:%f\nAccount type:%s\n",customer[temp].name,customer[temp].cash,customer[temp].acc_type);
+    }
+}
+
